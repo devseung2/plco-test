@@ -13,4 +13,5 @@ export type pageInfoTypes = {
   hasNext: boolean
   hasPrev: boolean
   pageNum: number
+  acwr: number
 }
