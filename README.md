@@ -9,11 +9,11 @@
     - assets : css, icon 이미지 폴더
     - components
       - Pagination.tsx : 페이지네이션 컴포넌트
-      - Player.tsx : 플페리어 컴포넌트
+      - Player.tsx : 플레이어 컴포넌트
       - PlayerList.tsx : 플레이어 리스트 컴포넌트
     - constants
       - types.ts : 타입 공통 변수
-    - pages : 페이지
+    - pages 
       - Home.tsx : 홈
 
     - 기본
