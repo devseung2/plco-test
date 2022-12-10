@@ -2,12 +2,12 @@ import React from 'react'
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
-import { pageInfoTypes } from '../constants/types'
+import { pageInfoTypes } from 'constants/types'
 
-import leftBtnIcons from '../assets/icons/left-arrow.svg'
-import leftBtnActiveIcons from '../assets/icons/left-arrow-active.svg'
-import rightBtnIcons from '../assets/icons/right-arrow.svg'
-import rightBtnActiveIcons from '../assets/icons/right-arrow-active.svg'
+import leftBtnIcons from 'assets/icons/left-arrow.svg'
+import leftBtnActiveIcons from 'assets/icons/left-arrow-active.svg'
+import rightBtnIcons from 'assets/icons/right-arrow.svg'
+import rightBtnActiveIcons from 'assets/icons/right-arrow-active.svg'
 
 type PropsTypes = {
   pageInfo: pageInfoTypes

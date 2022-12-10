@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
-import PlayerList from './PlayerList'
-import Pagination from './Pagination'
-import { playerListInfoTypes, pageInfoTypes } from '../constants/types'
-import DEFAULT_DATA from '../player.json'
+import PlayerList from 'components/PlayerList'
+import Pagination from 'components/Pagination'
+import { playerListInfoTypes, pageInfoTypes } from 'constants/types'
+import DEFAULT_DATA from 'player.json'
 
 const DEFAULT_PAGE_INFO = {
   limit: 5,
