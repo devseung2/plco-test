@@ -15,3 +15,8 @@ export type pageInfoTypes = {
   pageNum: number
   acwr: number
 }
+
+export type filterTypes = {
+  acwr: number
+  limit: number
+}

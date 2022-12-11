@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
@@ -10,18 +10,19 @@ import rightBtnIcons from 'assets/icons/right-arrow.svg'
 import rightBtnActiveIcons from 'assets/icons/right-arrow-active.svg'
 
 type PropsTypes = {
-  pageInfo: pageInfoTypes
+  hasPrev: boolean
+  hasNext: boolean
   movePage: (pageNum: number) => void
 }
 
-const Pagination = ({ pageInfo, movePage }: PropsTypes) => {
+const Pagination = ({ hasPrev, hasNext, movePage }: PropsTypes) => {
   return (
     <div css={pageSelectWrap}>
-      <button css={[pageMoveBtn, prevBtn, pageInfo.hasPrev && activePageMoveBtn]} onClick={() => pageInfo.hasPrev && movePage(-1)}>
-        <img src={pageInfo.hasPrev ? leftBtnActiveIcons : leftBtnIcons} alt="left move btn" />
+      <button css={[pageMoveBtn, prevBtn, hasPrev && activePageMoveBtn]} onClick={() => hasPrev && movePage(-1)}>
+        <img src={hasPrev ? leftBtnActiveIcons : leftBtnIcons} alt="left move btn" />
       </button>
-      <button css={[pageMoveBtn, nextBtn, pageInfo.hasNext && activePageMoveBtn]} onClick={() => pageInfo.hasNext && movePage(1)}>
-        <img src={pageInfo.hasNext ? rightBtnActiveIcons : rightBtnIcons} alt="right move btn" />
+      <button css={[pageMoveBtn, nextBtn, hasNext && activePageMoveBtn]} onClick={() => hasNext && movePage(1)}>
+        <img src={hasNext ? rightBtnActiveIcons : rightBtnIcons} alt="right move btn" />
       </button>
     </div>
   )

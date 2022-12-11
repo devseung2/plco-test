@@ -15,7 +15,12 @@ const DEFAULT_PAGE_INFO = {
   acwr: 1.5,
 }
 
-const Player = () => {
+type Props = {
+  limit: number
+  acwr: number
+}
+
+const Player = ({ limit, acwr }: Props) => {
   const [playerListInfo, setPlayerListInfo] = useState<playerListInfoTypes[]>([])
   const [playerTotal, setPlayerTotal] = useState(0)
   const [pageInfo, setPageInfo] = useState<pageInfoTypes>(Object.assign({}, DEFAULT_PAGE_INFO))
@@ -32,11 +37,26 @@ const Player = () => {
   }, [])
 
   useEffect(() => {
+    setPageBtn()
+  }, [playerTotal])
+
+  useEffect(() => {
+    setPageInfo((prev) => ({ ...prev, pageNum: 1, limit, acwr }))
+  }, [limit, acwr])
+
+  useEffect(() => {
+    getPlayerList()
+  }, [pageInfo.acwr, pageInfo.limit, pageInfo.pageNum])
+
+  const getPlayerList = () => {
+    const { entries } = DEFAULT_DATA
+    const filteredPlayerList = entries.filter((playerInfo) => playerInfo.acwr >= pageInfo.acwr).sort((a, b) => b.acwr - a.acwr)
     const searchRange = (pageInfo.pageNum - 1) * pageInfo.limit
 
-    setPlayerList(playerListInfo.slice(searchRange, searchRange + pageInfo.limit))
+    setPlayerList(filteredPlayerList.slice(searchRange, searchRange + pageInfo.limit))
+    setPlayerTotal(filteredPlayerList.length)
     setPageBtn()
-  }, [pageInfo.pageNum])
+  }
 
   const setPageBtn = () => {
     let _hasNext = false
@@ -55,7 +75,7 @@ const Player = () => {
     <div css={playerContainer}>
       <div css={mainWrap}>
         <div css={title}>😱 부상위험도 높은 선수 ({playerTotal}명)</div>
-        <div css={subTitle}>기준 ・ 부상위험도(ACWR) {pageInfo.acwr} 이상</div>
+        <div css={subTitle}>기준 ・ 부상위험도(ACWR) {pageInfo.acwr.toFixed(1)} 이상</div>
         {playerList.length > 0 && <PlayerList playerList={playerList} limit={pageInfo.limit} />}
         {playerTotal && (
           <div css={paginationNumWrap}>
@@ -66,7 +86,7 @@ const Player = () => {
         )}
       </div>
       <div css={divider} />
-      <Pagination pageInfo={pageInfo} movePage={movePage} />
+      <Pagination hasNext={pageInfo.hasNext} hasPrev={pageInfo.hasPrev} movePage={movePage} />
     </div>
   )
 }
@@ -77,6 +97,8 @@ const playerContainer = css({
   position: 'relative',
   width: '343px',
   minHeight: '500px',
+  marginBottom: '32px',
+  paddingBottom: '64px',
   backgroundColor: '#FFFFFF',
   border: '1px solid #E4E9F2',
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
