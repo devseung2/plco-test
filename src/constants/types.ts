@@ -17,6 +17,7 @@ export type pageInfoTypes = {
 }
 
 export type filterTypes = {
+  [key: string]: any
   acwr: number
   limit: number
 }

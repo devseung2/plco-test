@@ -41,7 +41,7 @@ const Filter = ({ filterInfo, setFilterInfo }: Props) => {
 
       return (
         <div className={className} onClick={() => selectFilter(filterObj.type)} key={index}>
-          {filterObj.name} : {filterInfo.acwr}
+          {filterObj.name} : {filterInfo[filterObj.type]}
         </div>
       )
     })
